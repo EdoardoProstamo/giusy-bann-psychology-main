@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 38 30% 97%;
+    --foreground: 220 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
+
+    --primary: 174 42% 30%;
+    --primary-foreground: 0 0% 98%;
+
+    --primary-light: 174 42% 92%;
+    --primary-glow: 174 42% 42%;
+
+    --secondary: 38 45% 88%;
+    --secondary-foreground: 220 25% 15%;
+
+    --muted: 38 20% 93%;
+    --muted-foreground: 220 15% 48%;
+
+    --accent: 174 30% 88%;
+    --accent-foreground: 174 42% 22%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 38 20% 87%;
+    --input: 38 20% 87%;
+    --ring: 174 42% 30%;
+
+    --radius: 0.75rem;
+
+    --champagne: 38 55% 84%;
+    --teal-deep: 174 45% 22%;
+    --teal-mid: 174 42% 30%;
+    --teal-soft: 174 35% 88%;
+    --warm-white: 38 30% 97%;
+    --text-dark: 220 25% 15%;
+    --text-mid: 220 20% 32%;
+    --text-muted: 220 15% 52%;
+
+    --shadow-card: 0 4px 24px -4px hsl(174 42% 30% / 0.10), 0 1px 4px -1px hsl(174 42% 30% / 0.06);
+    --shadow-card-hover: 0 12px 40px -8px hsl(174 42% 30% / 0.18), 0 2px 8px -2px hsl(174 42% 30% / 0.10);
+    --shadow-nav: 0 2px 20px -4px hsl(220 25% 15% / 0.08);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: hsl(var(--text-dark));
+  }
+
+  p {
+    color: hsl(var(--text-mid));
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  .font-sans {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .shadow-nav {
+    box-shadow: var(--shadow-nav);
+  }
+}
+
+/* Scroll Reveal Animation */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+}
+
+.reveal-up.is-visible {
+  animation: revealUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-fade {
+  opacity: 0;
+}
+
+.reveal-fade.is-visible {
+  animation: revealFade 0.5s ease forwards;
+}
+
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 80ms; }
+.stagger-3 { animation-delay: 160ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-fade {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .reveal-up.is-visible,
+  .reveal-fade.is-visible {
+    animation: none !important;
+  }
+}
+
+/* Premium image hover */
+.img-hover-wrap {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.img-hover-wrap img {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.img-hover-wrap:hover img {
+  transform: scale(1.03);
+}
+
+.img-hover-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: hsl(174 42% 30% / 0);
+  transition: background 0.3s ease;
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.img-hover-wrap:hover::after {
+  background: hsl(174 42% 30% / 0.07);
+}
+
+/* Animated underline links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: hsl(var(--primary));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* FAQ accordion */
+.faq-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+
+.faq-content.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Star rating */
+.star-filled {
+  color: hsl(38 85% 52%);
+}
+
+.star-empty {
+  color: hsl(38 20% 80%);
+}
