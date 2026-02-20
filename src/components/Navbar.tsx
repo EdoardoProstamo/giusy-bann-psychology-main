@@ -24,7 +24,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <Link to="/" className="group flex flex-col leading-tight">
+        <Link to="/" className="min-w-0 group flex flex-col leading-tight">
           <span className="font-serif text-base md:text-lg font-semibold text-foreground tracking-tight transition-colors group-hover:text-primary">
             {SITE_DATA.nome}
           </span>
@@ -34,7 +34,7 @@ export default function Navbar() {
         </Link>
 
         {/* Nav */}
-        <nav className="flex items-center gap-6 md:gap-8">
+        <nav className="min-w-0 flex items-center gap-3 sm:gap-4 md:gap-8">
           {navLinks.map((link) => {
             const active = location.pathname === link.href;
             return (
